@@ -23,9 +23,9 @@ const Comments = ({ comments }) => {
   return (
     <Grid container>
       {comments.map((comment, index) => {
-        const { body, createdAt, userHandle, userImage } = comment;
+        const { body, createdAt, userHandle, userImage, id } = comment;
         return (
-          <Fragment key={createdAt}>
+          <Fragment key={id}>
             <Grid item sm={12}>
               <Grid container>
                 <Grid item sm={2}>

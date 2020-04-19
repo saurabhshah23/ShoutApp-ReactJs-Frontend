@@ -9,6 +9,7 @@ import {
   SET_SHOUT,
   CLEAR_ERRORS,
   SET_ERRORS,
+  POST_COMMENT,
 } from "../types";
 import axios from "axios";
 
@@ -44,9 +45,7 @@ export const postShout = (shoutData) => (dispatch) => {
         type: POST_SHOUT,
         payload: res.data,
       });
-      dispatch({
-        type: CLEAR_ERRORS,
-      });
+      dispatch(resetUIErrors());
     })
     .catch((err) => {
       console.log(err);
@@ -68,9 +67,7 @@ export const getShout = (shoutId) => (dispatch) => {
         type: SET_SHOUT,
         payload: res.data, // Shout doc
       });
-      dispatch({
-        type: CLEAR_ERRORS,
-      });
+      dispatch(resetUIErrors());
     })
     .catch((err) => {
       console.log(err);
@@ -118,6 +115,28 @@ export const deleteShout = (shoutId) => (dispatch) => {
       dispatch({ type: DELETE_SHOUT, payload: shoutId });
     })
     .catch((err) => console.log(err));
+};
+
+// Post a comment on a shout
+export const postComment = (shoutId, commentData) => (dispatch) => {
+  console.log("dataActions > postComment... commentData=", commentData);
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/shout/${shoutId}/comment`, commentData)
+    .then((res) => {
+      dispatch({
+        type: POST_COMMENT,
+        payload: res.data,
+      });
+      dispatch(resetUIErrors());
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
+    });
 };
 
 // util functions

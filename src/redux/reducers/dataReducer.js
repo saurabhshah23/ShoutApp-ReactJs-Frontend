@@ -6,6 +6,7 @@ import {
   DELETE_SHOUT,
   POST_SHOUT,
   SET_SHOUT,
+  POST_COMMENT,
 } from "../types";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
+  let index = null;
   switch (action.type) {
     case LOADING_DATA:
       return {
@@ -33,8 +35,8 @@ export default function (state = initialState, action) {
 
     case LIKE_SHOUT:
     case UNLIKE_SHOUT:
-      let index = state.shouts.findIndex(
-        (like) => like.shoutId === action.payload.shoutId
+      index = state.shouts.findIndex(
+        (shout) => shout.shoutId === action.payload.shoutId
       );
       state.shouts[index] = action.payload;
       if (state.shout.shoutId === action.payload.shoutId)
@@ -61,6 +63,22 @@ export default function (state = initialState, action) {
       return {
         ...state,
         shout: action.payload,
+      };
+
+    case POST_COMMENT:
+      index = state.shouts.findIndex(
+        (shout) => shout.shoutId === action.payload.shoutId
+      );
+      state.shouts[index]["commentCount"] += 1;
+      if (state.shout.shoutId === action.payload.shoutId)
+        state.shout.commentCount += 1;
+
+      return {
+        ...state,
+        shout: {
+          ...state.shout,
+          comments: [action.payload, ...state.shout.comments],
+        },
       };
 
     default:

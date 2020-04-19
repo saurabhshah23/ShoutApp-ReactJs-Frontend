@@ -6,6 +6,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import dayjs from "dayjs";
 import LikeButton from "./LikeButton";
 import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 // MUI Stuff
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -17,7 +18,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import ChatIcon from "@material-ui/icons/Chat";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { getShout } from "../../redux/actions/dataActions";
+import { getShout, resetUIErrors } from "../../redux/actions/dataActions";
 import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +57,7 @@ function ShoutDialog({ shoutId, userHandle }) {
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
+    dispatch(resetUIErrors());
   };
   const handleOpen = () => {
     setOpen(true);
@@ -100,6 +102,7 @@ function ShoutDialog({ shoutId, userHandle }) {
         </MyIconButton>
         <span>{shout.commentCount} comments</span>
       </Grid>
+      <CommentForm shoutId={shoutId} />
       {data.shout.comments && data.shout.comments.length > 0 && (
         <Comments comments={data.shout.comments} />
       )}
