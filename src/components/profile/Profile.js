@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import dayjs from "dayjs";
 import EditProfile from "./EditProfile";
-import MyIconButton from "../util/MyIconButton";
+import MyIconButton from "../../util/MyIconButton";
 // Redux Stuff
 import { useSelector, useDispatch } from "react-redux";
-import { uploadImage, logoutUser } from "../redux/actions/userActions";
+import { uploadImage, logoutUser } from "../../redux/actions/userActions";
 // MUI Stuff
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";

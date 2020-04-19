@@ -4,6 +4,11 @@ import {
   LIKE_SHOUT,
   UNLIKE_SHOUT,
   DELETE_SHOUT,
+  LOADING_UI,
+  POST_SHOUT,
+  SET_SHOUT,
+  CLEAR_ERRORS,
+  SET_ERRORS,
 } from "../types";
 import axios from "axios";
 
@@ -25,6 +30,51 @@ export const getShouts = () => (dispatch) => {
         type: SET_SHOUTS,
         payload: [],
       });
+    });
+};
+
+// Post a shout
+export const postShout = (shoutData) => (dispatch) => {
+  console.log("dataActions > postShout");
+  dispatch({ type: LOADING_UI });
+  axios
+    .post("/shout", shoutData)
+    .then((res) => {
+      dispatch({
+        type: POST_SHOUT,
+        payload: res.data,
+      });
+      dispatch({
+        type: CLEAR_ERRORS,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+// Get shout details
+export const getShout = (shoutId) => (dispatch) => {
+  console.log("dataActions > getShout");
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/shout/${shoutId}`)
+    .then((res) => {
+      dispatch({
+        type: SET_SHOUT,
+        payload: res.data, // Shout doc
+      });
+      dispatch({
+        type: CLEAR_ERRORS,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
 
@@ -68,4 +118,11 @@ export const deleteShout = (shoutId) => (dispatch) => {
       dispatch({ type: DELETE_SHOUT, payload: shoutId });
     })
     .catch((err) => console.log(err));
+};
+
+// util functions
+// Clear UI errors
+export const resetUIErrors = () => (dispatch) => {
+  console.log("resetUIErrors...");
+  dispatch({ type: CLEAR_ERRORS });
 };

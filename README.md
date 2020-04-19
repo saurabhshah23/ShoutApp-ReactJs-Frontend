@@ -1,3 +1,53 @@
+This is the React JS frontend project.
+This is from a tutorial via classed on youtube for creating a clone of Twitter app.
+
+Ref to the tutorial:
+https://www.youtube.com/watch?v=m_u6P5k0vP0&t=1823s
+
+videos from 13 to last consist of react js class components development from scratch.
+Although, this codebase is developed using React Hooks instead of classes.
+
+### Tech stack includes:
+
+"react", "react-scripts", "react-dom" - (Default) React JS
+"react-router-dom" - router
+"redux", "react-redux", "redux-thunk" - Redux and Thunk for central store/state
+"axios" - API calls
+"@material-ui/core", "@material-ui/icons" - MUI - Material ui core and icons
+"dayjs" - date formating (light-weight alternative to momentJs)
+"jwt-decode" - jwt token decoding
+
+### STEPS to setup after clone:
+
+1. goto terminal/cmd till project folder.
+2. run "npm i" to install dependencies before locally serving the fb functions.
+3. npm start
+
+### Directory structure:
+
+- public/ (all static files)
+  - index.html
+  - manifest.json
+  - shout.png (favicon / app logo)
+- src/
+  - components/ (all functional level components used inside pages)
+  - pages/ (all page level container components)
+  - images/ (all static images)
+  - redux/ (all redux stuff inside)
+    - actions (all actions inside)
+    - reducers (all reducers inside)
+    - store.js (store create and definition)
+    - types.js (all constants definition)
+  - util/ (common util components like auth, button, etc )
+- App.css
+- App.js
+- intex.js
+- .gitignore
+- package.json
+- README.md
+
+===========================================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

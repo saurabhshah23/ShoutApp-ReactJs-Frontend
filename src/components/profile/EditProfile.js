@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
-import MyIconButton from "../util/MyIconButton";
+import MyIconButton from "../../util/MyIconButton";
 // Redux Stuff
 import { useSelector, useDispatch } from "react-redux";
-import { editUserProfile } from "../redux/actions/userActions";
+import { editUserProfile } from "../../redux/actions/userActions";
 // MUI Stuff
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from "@material-ui/core/Button";

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 // Components
-import Shout from "../components/Shout";
-import Profile from "../components/Profile";
+import Shout from "../components/shout/Shout";
+import Profile from "../components/profile/Profile";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getShouts } from "../redux/actions/dataActions";

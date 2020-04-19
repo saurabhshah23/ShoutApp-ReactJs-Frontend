@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import AppIcon from "../images/shout.png";
 import { Link } from "react-router-dom";
+import SubmitProgressBtn from "../util/SubmitProgressBtn";
 // MUI stuff
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../redux/actions/userActions";
@@ -93,18 +92,20 @@ export default function Login(props) {
             </Typography>
           )}
 
-          <Button
+          {/* <Button
             type="submit"
             variant="contained"
             color="primary"
             className={classes.button}
             disabled={UI.isLoading}
           >
-            Login
+            <span>Login</span>
             {UI.isLoading && (
               <CircularProgress size={20} className={classes.progress} />
             )}
-          </Button>
+          </Button> */}
+          <SubmitProgressBtn isLoading={UI.isLoading}>Login</SubmitProgressBtn>
+
           <small>
             <Typography variant="body2">
               don't have an account? <Link to="/signup">sign-up</Link>

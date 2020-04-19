@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import MyIconButton from "../util/MyIconButton";
+import MyIconButton from "../../util/MyIconButton";
 // MUI Stuff
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Dialog from "@material-ui/core/Dialog";
@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 // Redux
 import { useDispatch } from "react-redux";
+import { deleteShout } from "../../redux/actions/dataActions";
 
 const useStyles = makeStyles((theme) => ({
   deleteButton: {
@@ -32,7 +33,7 @@ function DeleteShout({ shoutId }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleDeleteShout = () => {
-    dispatch();
+    dispatch(deleteShout(shoutId));
   };
 
   return (
