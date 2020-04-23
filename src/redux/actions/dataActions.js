@@ -139,9 +139,58 @@ export const postComment = (shoutId, commentData) => (dispatch) => {
     });
 };
 
-// util functions
+// Get User Shouts
+export const getUserShouts = (userHandle) => (dispatch) => {
+  console.log("dataActions > getUserShouts...");
+  dispatch({ type: LOADING_DATA });
+  getUserApi(userHandle)
+    .then((res) => {
+      dispatch({
+        type: SET_SHOUTS,
+        payload: res.data.shouts,
+      });
+      console.log("ret=", res.data);
+    })
+    .catch((err) => {
+      console.log("err=", err);
+      dispatch({
+        type: SET_SHOUTS,
+        payload: [],
+      });
+    });
+};
+
+// export const getUserShouts = (userHandle) => (dispatch) => {
+//   console.log("dataActions > getUserShouts...");
+//   dispatch({ type: LOADING_DATA });
+//   axios
+//     .get(`/user/${userHandle}`)
+//     .then((res) => {
+//       dispatch({
+//         type: SET_SHOUTS,
+//         payload: res.data.shouts,
+//       });
+//       console.log("ret=", res.data);
+//       return res.data;
+//     })
+//     .catch((err) => {
+//       console.log("err=", err);
+//       dispatch({
+//         type: SET_SHOUTS,
+//         payload: [],
+//       });
+//       return err;
+//     });
+// };
+
+/* util functions */
 // Clear UI errors
 export const resetUIErrors = () => (dispatch) => {
   console.log("resetUIErrors...");
   dispatch({ type: CLEAR_ERRORS });
+};
+
+export const getUserApi = async (userHandle) => {
+  const data = await axios.get(`/user/${userHandle}`);
+  return await data;
 };
