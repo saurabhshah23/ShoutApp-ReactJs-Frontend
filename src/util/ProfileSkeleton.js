@@ -3,15 +3,10 @@ import defaultAvatar from "../images/no-avatar.png";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 // MUI Stuff
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import MuiLink from "@material-ui/core/Link";
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import LinkIcon from "@material-ui/icons/Link";
-import EditIcon from "@material-ui/icons/Edit";
-import LogoutIcon from "@material-ui/icons/PowerSettingsNew";
 
 const useStyles = makeStyles((theme) => ({
   ...theme.profile,
