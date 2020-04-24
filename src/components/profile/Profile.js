@@ -4,9 +4,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import dayjs from "dayjs";
 import EditProfile from "./EditProfile";
 import MyIconButton from "../../util/MyIconButton";
-// Redux Stuff
-import { useSelector, useDispatch } from "react-redux";
-import { uploadImage, logoutUser } from "../../redux/actions/userActions";
+import ProfileSkeleton from "../../util/ProfileSkeleton";
 // MUI Stuff
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -18,56 +16,12 @@ import CalendarToday from "@material-ui/icons/CalendarToday";
 import LinkIcon from "@material-ui/icons/Link";
 import EditIcon from "@material-ui/icons/Edit";
 import LogoutIcon from "@material-ui/icons/PowerSettingsNew";
+// Redux Stuff
+import { useSelector, useDispatch } from "react-redux";
+import { uploadImage, logoutUser } from "../../redux/actions/userActions";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: 20,
-  },
-  profile: {
-    "& .image-wrapper": {
-      textAlign: "center",
-      position: "relative",
-      "& button": {
-        position: "absolute",
-        top: "80%",
-        left: "70%",
-      },
-    },
-    "& .profile-image": {
-      width: 200,
-      height: 200,
-      objectFit: "cover",
-      maxWidth: "100%",
-      borderRadius: "50%",
-    },
-    "& .profile-details": {
-      textAlign: "center",
-      "& span, svg": {
-        verticalAlign: "middle",
-      },
-      "& a": {
-        color: theme.palette.primary.main,
-      },
-    },
-    "& hr": {
-      border: "none",
-      margin: "0 0 10px 0",
-    },
-    "& svg.button": {
-      "&:hover": {
-        cursor: "pointer",
-      },
-    },
-    "& .logout-button": {
-      marginTop: 10,
-    },
-  },
-  buttons: {
-    textAlign: "center",
-    "& a": {
-      margin: "20px 10px",
-    },
-  },
+  ...theme.profile,
 }));
 
 const Profile = () => {
@@ -201,7 +155,7 @@ const Profile = () => {
       </Paper>
     )
   ) : (
-    <p>loading...</p>
+    <ProfileSkeleton />
   );
 
   return profileMarkup;

@@ -47,6 +47,7 @@ const CommentForm = ({ shoutId }) => {
       setComment(newComment);
     }
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   const commentFormMarkup = isAuthenticated ? (

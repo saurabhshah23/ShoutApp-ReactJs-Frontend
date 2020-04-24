@@ -72,6 +72,7 @@ export default function PostShout() {
       handleClose();
       setShout(newShout);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [UI.isLoading]);
 
   return (

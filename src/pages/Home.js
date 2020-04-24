@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 // Components
 import Shout from "../components/shout/Shout";
 import Profile from "../components/profile/Profile";
+import ShoutSkeleton from "../util/ShoutSkeleton";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getShouts } from "../redux/actions/dataActions";
@@ -16,12 +17,13 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getShouts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let recentShouts = !isLoading ? (
     shouts.map((shout) => <Shout key={shout.shoutId} shout={shout} />)
   ) : (
-    <p>Loading Shouts...</p>
+    <ShoutSkeleton />
   );
 
   return (

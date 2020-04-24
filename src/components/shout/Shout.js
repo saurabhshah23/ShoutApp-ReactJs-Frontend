@@ -82,7 +82,11 @@ function Shout(props) {
           <ChatIcon color="primary" />
         </MyIconButton>
         <span>{commentCount} comments</span>
-        <ShoutDialog shoutId={shoutId} userHandle={userHandle} />
+        <ShoutDialog
+          shoutId={shoutId}
+          userHandle={userHandle}
+          openDialog={props.openDialog}
+        />
       </CardContent>
     </Card>
   );
@@ -90,6 +94,7 @@ function Shout(props) {
 
 Shout.propTypes = {
   shout: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool,
 };
 
 export default Shout;

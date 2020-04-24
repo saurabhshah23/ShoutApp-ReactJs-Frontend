@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import MyIconButton from "../../util/MyIconButton";
@@ -50,19 +50,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ShoutDialog({ shoutId, userHandle }) {
+function ShoutDialog({ shoutId, userHandle, openDialog }) {
   const classes = useStyles();
 
+  const [paths, setPaths] = useState({
+    oldPath: "",
+    newPath: "",
+  });
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleClose = () => {
+    // change the browser url
+    console.log("paths=", JSON.stringify(paths, 2, 4));
+    window.history.pushState(null, null, paths.oldPath);
     setOpen(false);
     dispatch(resetUIErrors());
   };
   const handleOpen = () => {
+    let oldPath = window.location.pathname,
+      newPath = `/users/${userHandle}/shout/${shoutId}`;
+    if (oldPath === newPath) oldPath = `/users/${userHandle}`;
+    window.history.pushState(null, null, newPath);
     setOpen(true);
+    setPaths({ ...paths, oldPath, newPath });
+    console.log("paths=", JSON.stringify(paths, 2, 4));
     dispatch(getShout(shoutId));
   };
+
+  // See if any specific shout needs to be open
+  useEffect(() => {
+    if (openDialog) handleOpen();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { UI, data } = useSelector((state) => state);
 
