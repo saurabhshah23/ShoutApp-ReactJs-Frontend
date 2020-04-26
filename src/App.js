@@ -21,6 +21,10 @@ import Navbar from "./components/layout/Navbar";
 import AuthRoute from "./util/AuthRoute";
 import axios from "axios";
 
+// API Base url
+axios.defaults.baseURL =
+  "https://asia-east2-shouting-app.cloudfunctions.net/api";
+
 // Logic
 const theme = createMuiTheme(themeJs);
 
